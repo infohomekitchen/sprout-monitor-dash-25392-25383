@@ -9,11 +9,9 @@ import { phHistory, airTempHistory, tdsHistory, humidityHistory } from "@/lib/mo
 import { toast } from "sonner";
 
 type MetricType = "pH" | "air_temp" | "water_temp" | "tds" | "humidity";
-type Period = "24H" | "7D" | "30D";
 
 const Metrics = () => {
   const [selectedMetric, setSelectedMetric] = useState<MetricType>("pH");
-  const [period, setPeriod] = useState<Period>("24H");
 
   const metricsConfig = {
     pH: { data: phHistory, label: "pH Level", unit: "pH", optimal: 6.5 },
@@ -103,7 +101,7 @@ const Metrics = () => {
           </CardHeader>
           <CardContent className="flex gap-4 flex-wrap">
             <Select value={selectedMetric} onValueChange={(v) => setSelectedMetric(v as MetricType)}>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-full md:w-[200px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -114,18 +112,6 @@ const Metrics = () => {
                 <SelectItem value="humidity">Humidity</SelectItem>
               </SelectContent>
             </Select>
-
-            <div className="flex gap-2">
-              {(["24H", "7D", "30D"] as Period[]).map((p) => (
-                <Button
-                  key={p}
-                  variant={period === p ? "default" : "outline"}
-                  onClick={() => setPeriod(p)}
-                >
-                  {p}
-                </Button>
-              ))}
-            </div>
           </CardContent>
         </Card>
 

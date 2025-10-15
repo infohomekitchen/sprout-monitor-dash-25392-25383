@@ -7,6 +7,7 @@ import { PHChart } from "@/components/charts/PHChart";
 import { TemperatureChart } from "@/components/charts/TemperatureChart";
 import { TDSGauge } from "@/components/charts/TDSGauge";
 import { HumidityHeatmap } from "@/components/charts/HumidityHeatmap";
+import { WhatCanBeGrown } from "@/components/dashboard/WhatCanBeGrown";
 import {
   getLatestMetrics,
   getStatusColor,
@@ -99,6 +100,9 @@ const Dashboard = () => {
           <TDSGauge value={metrics.tds_ppm} optimal={400} />
           <HumidityHeatmap />
         </div>
+
+        {/* What Can Be Grown */}
+        <WhatCanBeGrown />
 
         {/* Alerts and Actions */}
         <div className="grid md:grid-cols-2 gap-6">

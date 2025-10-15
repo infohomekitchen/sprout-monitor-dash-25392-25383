@@ -36,12 +36,16 @@ export const Header = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="hidden md:flex">
-            <Settings className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="hidden md:flex">
-            <User className="h-5 w-5" />
-          </Button>
+          <Link to="/settings">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <Settings className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Link to="/profile">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <User className="h-5 w-5" />
+            </Button>
+          </Link>
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild className="md:hidden">
@@ -62,14 +66,18 @@ export const Header = () => {
                   </Link>
                 ))}
                 <div className="border-t pt-4 mt-4 flex flex-col gap-2">
-                  <Button variant="ghost" className="justify-start">
-                    <Settings className="h-5 w-5 mr-2" />
-                    Settings
-                  </Button>
-                  <Button variant="ghost" className="justify-start">
-                    <User className="h-5 w-5 mr-2" />
-                    Profile
-                  </Button>
+                  <Link to="/settings" onClick={() => setOpen(false)}>
+                    <Button variant="ghost" className="justify-start w-full">
+                      <Settings className="h-5 w-5 mr-2" />
+                      Settings
+                    </Button>
+                  </Link>
+                  <Link to="/profile" onClick={() => setOpen(false)}>
+                    <Button variant="ghost" className="justify-start w-full">
+                      <User className="h-5 w-5 mr-2" />
+                      Profile
+                    </Button>
+                  </Link>
                 </div>
               </nav>
             </SheetContent>

@@ -48,7 +48,7 @@ const PestMonitoring = () => {
         {/* Crop Cards Grid */}
         <div>
           <h2 className="mb-4">Select Crop</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {cropData.map((crop) => (
               <CropCard
                 key={crop.id}

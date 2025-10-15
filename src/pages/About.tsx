@@ -47,29 +47,6 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-hover">
-              <CardContent className="p-6">
-                <h3 className="mb-4">Timeline & Milestones</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-4">
-                    <div className="w-24 text-sm font-semibold text-muted-foreground">Q1 2024</div>
-                    <div className="flex-1 text-sm">Initial sensor deployment and data collection</div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-24 text-sm font-semibold text-muted-foreground">Q2 2024</div>
-                    <div className="flex-1 text-sm">Dashboard development and real-time monitoring</div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-24 text-sm font-semibold text-muted-foreground">Q3 2024</div>
-                    <div className="flex-1 text-sm">AI pest detection integration</div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-24 text-sm font-semibold text-muted-foreground">Q4 2024</div>
-                    <div className="flex-1 text-sm">Automated control systems and alerts</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           {/* Right Column - How It Works */}
@@ -141,37 +118,6 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-hover">
-              <CardContent className="p-6">
-                <h3 className="mb-4">Technology Stack</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 bg-muted rounded-lg">
-                    <p className="text-sm font-semibold">Frontend</p>
-                    <p className="text-xs text-muted-foreground">React, Tailwind CSS</p>
-                  </div>
-                  <div className="p-3 bg-muted rounded-lg">
-                    <p className="text-sm font-semibold">Backend</p>
-                    <p className="text-xs text-muted-foreground">FastAPI, Python</p>
-                  </div>
-                  <div className="p-3 bg-muted rounded-lg">
-                    <p className="text-sm font-semibold">Database</p>
-                    <p className="text-xs text-muted-foreground">PostgreSQL, TimescaleDB</p>
-                  </div>
-                  <div className="p-3 bg-muted rounded-lg">
-                    <p className="text-sm font-semibold">IoT</p>
-                    <p className="text-xs text-muted-foreground">MQTT, WebSockets</p>
-                  </div>
-                  <div className="p-3 bg-muted rounded-lg">
-                    <p className="text-sm font-semibold">ML/AI</p>
-                    <p className="text-xs text-muted-foreground">TensorFlow, PyTorch</p>
-                  </div>
-                  <div className="p-3 bg-muted rounded-lg">
-                    <p className="text-sm font-semibold">DevOps</p>
-                    <p className="text-xs text-muted-foreground">Docker, Kubernetes</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
 
