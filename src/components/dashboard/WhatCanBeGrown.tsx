@@ -84,12 +84,12 @@ export const WhatCanBeGrown = () => {
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="leafy" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-2 h-auto">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-1 sm:gap-2 h-auto p-1">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
-                className="text-xs sm:text-sm whitespace-normal h-auto py-2"
+                className="text-[10px] sm:text-xs lg:text-sm whitespace-normal h-auto py-1.5 sm:py-2 px-1 sm:px-3"
               >
                 {category.title}
               </TabsTrigger>
@@ -108,17 +108,17 @@ export const WhatCanBeGrown = () => {
                 {category.description}
               </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
                 {category.crops.map((crop) => (
                   <div key={crop.name} className="group">
-                    <div className="aspect-square rounded-lg overflow-hidden mb-2">
+                    <div className="aspect-square rounded-md sm:rounded-lg overflow-hidden mb-1.5 sm:mb-2">
                       <img
                         src={crop.image}
                         alt={crop.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
-                    <p className="text-xs font-medium text-center">{crop.name}</p>
+                    <p className="text-[10px] sm:text-xs font-medium text-center leading-tight">{crop.name}</p>
                   </div>
                 ))}
               </div>

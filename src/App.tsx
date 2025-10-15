@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
+import { LoadingScreen } from "./components/LoadingScreen";
 import Dashboard from "./pages/Dashboard";
 import Metrics from "./pages/Metrics";
 import PestMonitoring from "./pages/PestMonitoring";
@@ -18,6 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <LoadingScreen />
       <BrowserRouter>
         <div className="flex flex-col min-h-screen">
           <Header />

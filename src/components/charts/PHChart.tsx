@@ -1,16 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 import { SensorReading } from "@/lib/mockData";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 interface PHChartProps {
   data: SensorReading[];
 }
 
 export const PHChart = ({ data }: PHChartProps) => {
-  const [period, setPeriod] = useState<"24h" | "7d">("24h");
-
   const chartData = data.map((d) => ({
     time: new Date(d.ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     value: d.value,
@@ -18,24 +14,8 @@ export const PHChart = ({ data }: PHChartProps) => {
 
   return (
     <Card className="card-hover">
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader>
         <CardTitle className="text-lg">pH Over Time</CardTitle>
-        <div className="flex gap-2">
-          <Button
-            variant={period === "24h" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setPeriod("24h")}
-          >
-            24H
-          </Button>
-          <Button
-            variant={period === "7d" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setPeriod("7d")}
-          >
-            7D
-          </Button>
-        </div>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={250}>
