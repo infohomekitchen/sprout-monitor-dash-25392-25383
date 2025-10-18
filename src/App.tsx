@@ -9,6 +9,10 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import Dashboard from "./pages/Dashboard";
 import Metrics from "./pages/Metrics";
 import PestMonitoring from "./pages/PestMonitoring";
+import Consultation from "./pages/Consultation";
+import Blog from "./pages/Blog";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +31,10 @@ const App = () => (
             <Route path="/" element={<Dashboard />} />
             <Route path="/metrics" element={<Metrics />} />
             <Route path="/pest-monitoring" element={<PestMonitoring />} />
+            <Route path="/consultation" element={<Consultation />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

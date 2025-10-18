@@ -7,6 +7,7 @@ import { PHChart } from "@/components/charts/PHChart";
 import { TemperatureChart } from "@/components/charts/TemperatureChart";
 import { TDSGauge } from "@/components/charts/TDSGauge";
 import { HumidityHeatmap } from "@/components/charts/HumidityHeatmap";
+import { CurrentlyGrownCrops } from "@/components/dashboard/CurrentlyGrownCrops";
 import { WhatCanBeGrown } from "@/components/dashboard/WhatCanBeGrown";
 import {
   getLatestMetrics,
@@ -100,6 +101,9 @@ const Dashboard = () => {
           <TDSGauge value={metrics.tds_ppm} optimal={400} />
           <HumidityHeatmap />
         </div>
+
+        {/* Currently Grown Crops */}
+        <CurrentlyGrownCrops />
 
         {/* What Can Be Grown */}
         <WhatCanBeGrown />

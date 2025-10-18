@@ -1,13 +1,15 @@
-import { Menu, Settings, User } from "lucide-react";
+import { Menu, Settings, User, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 
 const navigation = [
-  { name: "Dashboard", href: "/" },
+  { name: "Home", href: "/" },
   { name: "Metrics", href: "/metrics" },
   { name: "Pest Monitoring", href: "/pest-monitoring" },
+  { name: "Consultation", href: "/consultation" },
+  { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
 ];
 
@@ -36,6 +38,21 @@ export const Header = () => {
         </div>
 
         <div className="flex items-center gap-2">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <Instagram className="h-5 w-5" />
+            </Button>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <Linkedin className="h-5 w-5" />
+            </Button>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <Youtube className="h-5 w-5" />
+            </Button>
+          </a>
           <Link to="/settings">
             <Button variant="ghost" size="icon" className="hidden md:flex">
               <Settings className="h-5 w-5" />

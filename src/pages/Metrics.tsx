@@ -3,6 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Download, TrendingUp } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { PHChartMetrics } from "@/components/charts/PHChartMetrics";
 import { phHistory, airTempHistory, tdsHistory, humidityHistory } from "@/lib/mockData";
@@ -50,12 +56,16 @@ const Metrics = () => {
     };
   });
 
-  const handleExport = () => {
+  const [exportDays, setExportDays] = useState(1);
+
+  const handleExport = (days: number) => {
+    const dataToExport = currentConfig.data.slice(-days * 24);
+    
     // Generate CSV content
     const headers = ["Timestamp", "Value", "Unit"];
     const csvRows = [headers.join(",")];
     
-    currentData.forEach((item) => {
+    dataToExport.forEach((item) => {
       const row = [
         new Date(item.ts).toISOString(),
         item.value.toFixed(2),
@@ -69,13 +79,13 @@ const Metrics = () => {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${selectedMetric}_metrics_${new Date().toISOString().split("T")[0]}.csv`;
+    link.download = `${selectedMetric}_${days}day_metrics_${new Date().toISOString().split("T")[0]}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
     
-    toast.success("CSV file downloaded successfully!");
+    toast.success(`${days} day${days > 1 ? 's' : ''} CSV downloaded successfully!`);
   };
 
   return (
@@ -88,10 +98,28 @@ const Metrics = () => {
               Deep analytics and historical trends
             </p>
           </div>
-          <Button onClick={handleExport}>
-            <Download className="h-4 w-4 mr-2" />
-            Export CSV
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button>
+                <Download className="h-4 w-4 mr-2" />
+                Export CSV
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => handleExport(1)}>
+                Export 1 Day
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleExport(2)}>
+                Export 2 Days
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleExport(7)}>
+                Export 7 Days
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleExport(30)}>
+                Export 1 Month
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Parameter Selector */}

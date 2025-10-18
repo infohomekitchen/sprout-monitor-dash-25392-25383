@@ -1,32 +1,57 @@
 import { useEffect, useState } from "react";
-import { Sprout } from "lucide-react";
+import Lottie from "lottie-react";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import growthAnimation from "@/assets/growth-animation.json";
+import { useNavigate } from "react-router-dom";
 
 export const LoadingScreen = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [showButton, setShowButton] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 1000);
+    const progressTimer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressTimer);
+          setShowButton(true);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 50);
 
-    return () => clearTimeout(timer);
+    return () => clearInterval(progressTimer);
   }, []);
 
-  if (!isVisible) return null;
+  if (!showWelcome) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/20">
-      <div className="flex flex-col items-center gap-4">
-        <div className="relative">
-          <div className="absolute inset-0 animate-ping">
-            <Sprout className="w-16 h-16 text-primary opacity-20" />
-          </div>
-          <Sprout className="w-16 h-16 text-primary animate-pulse" />
+      <div className="flex flex-col items-center gap-8 max-w-md px-6">
+        <div className="w-64 h-64">
+          <Lottie animationData={growthAnimation} loop={true} />
         </div>
-        <div className="flex gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
-          <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "150ms" }} />
-          <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: "300ms" }} />
+        <div className="text-center space-y-4 w-full">
+          <h1 className="text-3xl font-bold text-primary">Aero Growth Squad</h1>
+          <div className="space-y-2 w-full">
+            <Progress value={progress} className="h-2" />
+            <p className="text-sm text-muted-foreground">Loading {progress}%</p>
+          </div>
+          {showButton && (
+            <Button 
+              size="lg" 
+              className="mt-4 animate-in fade-in duration-500"
+              onClick={() => {
+                setShowWelcome(false);
+                navigate("/");
+              }}
+            >
+              Get Started with Aeroponics
+            </Button>
+          )}
         </div>
       </div>
     </div>

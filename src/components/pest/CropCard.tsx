@@ -29,11 +29,11 @@ export const CropCard = ({
       onClick={onClick}
     >
       <CardContent className="p-4">
-        <div className="aspect-square rounded-lg overflow-hidden mb-3">
+        <div className="aspect-square rounded-lg overflow-hidden mb-3 bg-muted">
           <img
             src={image}
             alt={name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
         </div>
         <h3 className="font-semibold mb-2">{name}</h3>
