@@ -29,7 +29,7 @@ export const LoadingScreen = () => {
   if (!showWelcome) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/20 px-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: '#043002' }}>
       <div className="flex flex-col items-center gap-4 sm:gap-8 max-w-md w-full">
         <div className="w-48 h-48 sm:w-64 sm:h-64">
           <Lottie animationData={growthAnimation} loop={true} />
