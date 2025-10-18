@@ -23,8 +23,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <LoadingScreen />
       <BrowserRouter>
+        <LoadingScreen />
         <div className="flex flex-col min-h-screen">
           <Header />
           <Routes>
