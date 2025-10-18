@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import growthAnimation from "@/assets/growth-animation.json";
-import { useNavigate } from "react-router-dom";
 
 export const LoadingScreen = () => {
   const [showWelcome, setShowWelcome] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [showButton, setShowButton] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const progressTimer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressTimer);
-          setShowButton(true);
+          setTimeout(() => setShowWelcome(false), 500);
           return 100;
         }
         return prev + 2;
@@ -29,29 +25,23 @@ export const LoadingScreen = () => {
   if (!showWelcome) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: '#043002' }}>
-      <div className="flex flex-col items-center gap-4 sm:gap-8 max-w-md w-full">
-        <div className="w-48 h-48 sm:w-64 sm:h-64">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center px-4 transition-opacity duration-500" 
+      style={{ 
+        backgroundColor: '#043002',
+        opacity: progress === 100 ? 0 : 1
+      }}
+    >
+      <div className="flex flex-col items-center gap-6 sm:gap-8 w-full max-w-2xl">
+        <div className="w-72 h-72 sm:w-96 sm:h-96">
           <Lottie animationData={growthAnimation} loop={true} />
         </div>
-        <div className="text-center space-y-3 sm:space-y-4 w-full">
-          <h1 className="text-2xl sm:text-3xl font-bold text-primary">Aero Growth Squad</h1>
-          <div className="space-y-2 w-full max-w-xs mx-auto">
+        <div className="text-center space-y-4 w-full">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">Aero Growth Squad</h1>
+          <div className="space-y-3 w-full max-w-md mx-auto">
             <Progress value={progress} className="h-2" />
-            <p className="text-sm text-muted-foreground">Loading {progress}%</p>
+            <p className="text-base sm:text-lg text-white/90">Loading {progress}%</p>
           </div>
-          {showButton && (
-            <Button 
-              size="lg" 
-              className="mt-4 animate-in fade-in duration-500 w-full sm:w-auto"
-              onClick={() => {
-                setShowWelcome(false);
-                navigate("/");
-              }}
-            >
-              Get Started with Aeroponics
-            </Button>
-          )}
         </div>
       </div>
     </div>
